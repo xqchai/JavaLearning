@@ -1,4 +1,4 @@
-markdown文件中图片为本地图片路径，而不是内嵌在.md文件中，因此上传Github无法正常显示
+markdown文原生语法不支持内嵌图片，因此本地md文件上传Github无法正常显示图片
 故将本地图片上传至github仓库下https://github.com/xqchai/JavaLearning/blob/main/Java_Notes/Images
 添加图片格式为![Alt Text](image_path)
 
