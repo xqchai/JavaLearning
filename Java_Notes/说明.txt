@@ -1,3 +1,8 @@
+markdown文件中图片为本地图片路径，而不是内嵌在.md文件中，因此上传Github无法正常显示
+故将本地图片上传至github仓库下https://github.com/xqchai/JavaLearning/blob/main/Java_Notes/Pictures
+添加图片格式为![Alt Text](image_path)
+
+
 本菜鸡的学习路线主要依靠B站黑马程序员Java课程
 
 01.黑马程序员Java零基础视频教程_上部(Java入门，含斯坦福大学练习题+力扣算法题和大厂java面试题）
