@@ -1,5 +1,6 @@
 package com.xqchai.demo;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -138,6 +139,8 @@ public class ManageSystem {
 
 
     public static void main(String[] args) {
+        //先跳转到登录界面，登录成功进入学生管理系统
+
         ArrayList<Student> studentInformation = new ArrayList<>();
         System.out.println("欢迎使用xqchai的学生管理系统！\n" +
                 "请输入选项1-5来进行操作\n" +

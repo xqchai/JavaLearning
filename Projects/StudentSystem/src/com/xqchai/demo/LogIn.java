@@ -13,18 +13,40 @@ public class LogIn {
         System.out.println("开始注册新用户");
         System.out.println("请输入您的用户名");
         String username = enter();
+        while(userCheck(username,userInformation)>-1){
+            System.out.println("该用户名已存在，请重新输入：");
+            username = enter();
+        }
         newUser.setUserName(username);
 
-        System.out.println("请输入您的密码");
-        String password = enter();
-        newUser.setPassword(password);
+        int passwordFlag = 0;
+        while(passwordFlag==0){
+            System.out.println("请输入您的密码");
+            String password = enter();
+            System.out.println("请再次输入您的密码");
+            String password2 = enter();
+            if(password.equals(password2)){
+                newUser.setPassword(password);
+                passwordFlag = 1;
+            }
+            else
+                System.out.println("两次密码输入不一致，请重新输入：");
+        }
 
         System.out.println("请输入您的手机号");
         String phonenumber = enter();
+        while(!phoneNumberVerify(phonenumber)){
+            System.out.println("手机号码输入有误，请重新输入：");
+            phonenumber = enter();
+        }
         newUser.setPhoneNumber(phonenumber);
 
         System.out.println("请输入您的身份证号");
         String idnumber = enter();
+        while(!idNumberVerify(idnumber)){
+            System.out.println("身份证号码输入有误，请重新输入：");
+            idnumber = enter();
+        }
         newUser.setIdNumber(idnumber);
 
         userInformation.add(newUser);
@@ -77,11 +99,33 @@ public class LogIn {
         //根据用户名进行用户查询，返回-1查询失败，查询成功返回列表序号i
         for (int i = 0; i < userInformation.size(); i++) {
             if(userInformation.get(i).getUserName().equals(userName)){
-                System.out.println("已查询到该学生信息");
+                System.out.println("已查询到该用户信息");
                 return i;
             }
         }
         return -1;
+    }
+
+    public static boolean phoneNumberVerify(String phoneNumber){
+        //手机号验证，返回true
+        if(phoneNumber.length()!=11 || phoneNumber.charAt(0) !='1')
+            return false;
+        for (int i = 0; i < phoneNumber.length(); i++) {
+            if(phoneNumber.charAt(i)<'0' || phoneNumber.charAt(i)>'9')
+                return false;
+        }
+        return true;
+    }
+
+    public static boolean idNumberVerify(String idNumber){
+        //手机号验证，返回true
+        if(idNumber.length()!=18)
+            return false;
+        for (int i = 0; i < idNumber.length(); i++) {
+            if(idNumber.charAt(i)<'0' || idNumber.charAt(i)>'9')
+                return false;
+        }
+        return true;
     }
 
     public static void main(String[] args) {
@@ -98,17 +142,14 @@ public class LogIn {
             switch (choice){
                 case 1:{
                     flag = login(userInformation);
-                    //flag = 0;//登录成功之后即可跳出循环
                     break;
                 }
                 case 2:{
                     register(userInformation);
-                    //flag = 1;
                     break;
                 }
                 case 3:{
                     forgetPassword(userInformation);
-                    //flag = 1;
                     break;
                 }
                 default: {
